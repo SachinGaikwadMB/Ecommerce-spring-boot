@@ -30,6 +30,24 @@ public class CustomUserDetailsService implements UserDetailsService
 		}
 		
 	}
+
+	//Added for testing repos
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+	{
+		User user = null;
+
+		user = userRepository.findByEmail(username);
+		if (user != null)
+		{
+			return UserDetailsImpl.build(user);
+		}
+		else
+		{
+			throw new UsernameNotFoundException(username + " not found");
+		}
+		
+	}
 	
 	
 }
