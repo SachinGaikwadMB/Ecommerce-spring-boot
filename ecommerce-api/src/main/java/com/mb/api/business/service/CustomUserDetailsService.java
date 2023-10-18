@@ -22,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService
 		user = userRepository.findByEmail(username);
 		if (user != null)
 		{
+			System.out.println("Inside method");
 			return UserDetailsImpl.build(user);
 		}
 		else
